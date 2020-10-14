@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: bee-bot-service
+jda:
+  token: NzU4ODE2MTE4MDM0Mzk5MjU0.X20clA.h3ZMiTmt2CpXyoNiB9xIrMAkCaY
