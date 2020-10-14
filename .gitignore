@@ -30,7 +30,7 @@ build/
 !**/src/test/**/build/
 
 #Configs, I guess
-**/application.yml
+src/**/application.yml
 
 ### VS Code ###
 .vscode/
