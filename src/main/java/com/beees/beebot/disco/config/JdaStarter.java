@@ -20,7 +20,8 @@ public class JdaStarter {
     private static JDA jda;
 
     private final BotInfoManager botInfoManager;
-    private final JdaProps jdaProps;
+    private final BuzzCommand buzzCommand;
+    private final BotProps botProps;
 
     public static JDA getJda(){
         return jda;
@@ -29,9 +30,9 @@ public class JdaStarter {
     @Scheduled(initialDelay = 1, fixedDelay = Long.MAX_VALUE)
     private void start(){
         //Create Bot
-        JDABuilder jdaBuilder = JDABuilder.createDefault(botInfoManager.getBotInfo(jdaProps.getBotUsername()).getAccessToken());
+        JDABuilder jdaBuilder = JDABuilder.createDefault(botInfoManager.getBotInfo(botProps.getBotUsername()).getAccessToken());
         //Register commands
-        jdaBuilder.addEventListeners(new BuzzCommand());
+        jdaBuilder.addEventListeners(buzzCommand);
         try{
             //Try to log in bot
             jda = jdaBuilder.build();

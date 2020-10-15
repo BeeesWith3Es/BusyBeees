@@ -17,6 +17,16 @@ spring:
       idle-timeout: 300000
       connection-test-query: SELECT 1
 
-jda:
-  command-string: "o8o"
+bot:
   bot-username: "BeeeBot"
+  command-string: "o8o"
+  permissions:
+    can-manage:
+      - admin
+      - moderator
+      - channel-mod
+      - color-captain
+    can-ban:
+      - admin
+      - moderator
+      - channel-mod
