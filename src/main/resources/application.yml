@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: bee-bot-service
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    username: beees
+    password: THREEES
+    url: jdbc:postgresql://localhost:5432/beeebot_db
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 5
+      maximum-pool-size: 25
+      idle-timeout: 300000
+      connection-test-query: SELECT 1
+
+jda:
+  command-string: "o8o"
+  bot-username: "BeeeBot"

@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties("jda")
 public class JdaProps {
-    private static String token;
-
-    public static String getCode(){
-        return token;
-    }
+    private String commandString;
+    private String botUsername;
 }
