@@ -16,10 +16,14 @@ spring:
       maximum-pool-size: 25
       idle-timeout: 300000
       connection-test-query: SELECT 1
+logging:
+  level:
+    com.beees.*: DEBUG
 
 bot:
   bot-username: "BeeeBot"
   command-string: "o8o"
+  big-ban-role: all-ban
   permissions:
     can-manage:
       - admin
@@ -30,3 +34,4 @@ bot:
       - admin
       - moderator
       - channel-mod
+

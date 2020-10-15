@@ -12,8 +12,8 @@ import java.util.List;
 public class BotProps {
     private String botUsername;
     private String commandString;
+    private String bigBanRole;
     private Permissions permissions;
-    private String colorRole;
 
     @Data
     public static class Permissions{

@@ -15,4 +15,7 @@ public class MessageService {
     public void reactBee(Message m){
         m.addReaction("U+1F41D").queue();
     }
+    public void reactHoneyPot(Message m){
+        m.addReaction("U+1F36F").queue();
+    }
 }
