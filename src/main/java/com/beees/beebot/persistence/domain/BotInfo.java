@@ -18,4 +18,7 @@ public class BotInfo {
 
     @Column(name = "username")
     private String username;
+
+    @Column(name = "client_id")
+    private String clientId;
 }

@@ -4,6 +4,7 @@ import com.beees.beebot.disco.config.BotProps;
 import com.beees.beebot.disco.config.JdaStarter;
 import com.beees.beebot.disco.services.ColorService;
 import lombok.RequiredArgsConstructor;
+import lombok.Singular;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Activity;

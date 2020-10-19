@@ -3,6 +3,10 @@ package com.beees.beebot.disco.services;
 import net.dv8tion.jda.api.entities.Message;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class MessageService {
 
@@ -17,5 +21,9 @@ public class MessageService {
     }
     public void reactHoneyPot(Message m){
         m.addReaction("U+1F36F").queue();
+    }
+    // (\"[\S\s]+\")|(\S*)
+    public List<String> parseArgs(String args){
+        return new ArrayList<>(Arrays.asList(args.split("\\s(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)")));
     }
 }

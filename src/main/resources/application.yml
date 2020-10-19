@@ -22,7 +22,7 @@ logging:
 
 bot:
   bot-username: "BeeeBot"
-  command-string: "o8o"
+  command-string: "o8o "
   big-ban-role: all-ban
   permissions:
     can-manage:
