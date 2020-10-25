@@ -1,17 +1,15 @@
 package com.beees.beebot.disco.config;
 
-import ch.qos.logback.classic.BasicConfigurator;
 import com.beees.beebot.disco.commands.BuzzCommand;
 import com.beees.beebot.disco.commands.ProfileCommand;
-import com.beees.beebot.disco.services.BotInfoManager;
-import com.beees.beebot.persistence.domain.BotInfo;
+import com.beees.beebot.disco.services.MessageService;
+import com.beees.beebot.persistence.management.BotInfoManager;
+import com.beees.beebot.persistence.domain.BotInfoEntity;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +24,7 @@ public class JdaStarter {
     private final BotInfoManager botInfoManager;
     private final BuzzCommand buzzCommand;
     private final BotProps botProps;
+    private final MessageService messageService;
 
     public static JDA getJda(){
         return jda;
@@ -33,7 +32,7 @@ public class JdaStarter {
 
     @Scheduled(initialDelay = 1, fixedDelay = Long.MAX_VALUE)
     private void start(){
-        BotInfo botInfo = botInfoManager.getBotInfo(botProps.getBotUsername());
+        BotInfoEntity botInfo = botInfoManager.getBotInfo(botProps.getBotUsername());
         //Create Bot
         JDABuilder jdaBuilder = JDABuilder.createDefault(botInfo.getAccessToken());
         //Register commands
@@ -56,7 +55,8 @@ public class JdaStarter {
             jda = jdaBuilder.build();
         }catch (LoginException e){
             e.printStackTrace();
+            return;
         }
-
+        messageService.scrapeMessages();
     }
 }

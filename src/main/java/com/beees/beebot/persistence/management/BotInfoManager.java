@@ -1,6 +1,6 @@
-package com.beees.beebot.disco.services;
+package com.beees.beebot.persistence.management;
 
-import com.beees.beebot.persistence.domain.BotInfo;
+import com.beees.beebot.persistence.domain.BotInfoEntity;
 import com.beees.beebot.persistence.repository.BotInfoRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class BotInfoManager {
     private final BotInfoRepo botInfoRepo;
 
-    public BotInfo getBotInfo(String username){
+    public BotInfoEntity getBotInfo(String username){
         return botInfoRepo.findByUsername(username);
     }
 }

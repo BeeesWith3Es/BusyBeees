@@ -10,15 +10,15 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "bot_info", schema = "hive")
-public class BotInfo {
+public class BotInfoEntity {
 
     @Id
     @Column(name = "access_token")
     private String accessToken;
 
-    @Column(name = "username")
     private String username;
 
-    @Column(name = "client_id")
     private String clientId;
+
+    private String guildId;
 }
