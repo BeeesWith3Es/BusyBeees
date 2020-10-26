@@ -7,6 +7,7 @@ create table hive.message
     guild_id text not null,
     member_id text not null,
     has_embed boolean default false not null,
-    timestamp timestamp with time zone not null
+    timestamp timestamp with time zone not null,
+    is_bot boolean not null,
+    created_at timestamp with time zone not null
 );
-

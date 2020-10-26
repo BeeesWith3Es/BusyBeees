@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.entities.Message;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Slf4j
@@ -26,6 +27,9 @@ public class MessageManager {
         entity.setMemberId(message.getAuthor().getId());
         entity.setHasEmbed(!message.getEmbeds().isEmpty());
         entity.setTimestamp(message.getTimeCreated().atZoneSameInstant(ZoneOffset.UTC));
+        entity.setIsBot(message.getAuthor().isBot());
+        //TODO This should be unnecessary and handled by JPA, but seems to be null after a few 100 rows are inserted.
+        entity.setCreatedAt(ZonedDateTime.now());
         messageRepo.save(entity);
     }
 

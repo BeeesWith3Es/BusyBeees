@@ -70,7 +70,7 @@ public class MessageService {
             log.error("{}", e.getMessage());
             return;
         }
-
+        log.info("Scrape started.");
         MessageHistory history;
 
         Map<String, List<Message>> messagesByChannel = new HashMap<>();
@@ -108,6 +108,6 @@ public class MessageService {
                 messageManager.saveMessages(e.getValue());
             }
         }
-        log.debug("Time to scrape: {}s", (double)(System.currentTimeMillis()-timeBefore)/1000);
+        log.info("Time to scrape: {}s", (double)(System.currentTimeMillis()-timeBefore)/1000);
     }
 }

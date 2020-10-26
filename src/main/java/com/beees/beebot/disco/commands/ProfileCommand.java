@@ -1,5 +1,6 @@
 package com.beees.beebot.disco.commands;
 
+import com.beees.beebot.disco.config.BotProps;
 import com.beees.beebot.disco.services.MessageService;
 import com.beees.beebot.persistence.domain.MessageEntity;
 import com.jagrosh.jdautilities.command.Command;
@@ -22,8 +23,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProfileCommand extends Command {
 
-
     private static Command command;
+
+    private final BotProps botProps;
     private final MessageService messageService;
 
     @PostConstruct
@@ -38,11 +40,18 @@ public class ProfileCommand extends Command {
     protected void execute(CommandEvent ce) {
         //TODO make this work. Rn I'm just testing the JDA-Utilities stuff
         List<String> args = messageService.parseArgs(ce.getArgs());
-        if(ce.getMessage().getMentionedMembers().isEmpty()){
+
+        if(args.size()<1){
             //Failure: no one mentioned
+            messageService.reactError(ce.getMessage());
             return;
         }
-        Member member = ce.getMessage().getMentionedMembers().get(0);
+        Member member = ce.getGuild().retrieveMemberById(args.get(0)).complete();
+        if(member == null){
+            messageService.reactError(ce.getMessage());
+            ce.getChannel().sendMessage("Could not find specified user!").queue();
+            return;
+        }
         if(ce.getMessage().getMentionedChannels().isEmpty()){
             //Non-channel specific profile
             EmbedBuilder eb = new EmbedBuilder();
@@ -51,7 +60,7 @@ public class ProfileCommand extends Command {
 
             String joinDate = member.getTimeJoined().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG)
                     .withZone(ZoneId.of("UTC")));
-            eb.addField("Join Date: ", joinDate, true);
+            eb.addField("Join Date: ", joinDate, false);
 
             Map<String, List<MessageEntity>> messages = messageService.getUserMessages(member.getId());
 
@@ -59,7 +68,7 @@ public class ProfileCommand extends Command {
             Map.Entry<String, List<MessageEntity>> mostUsedChannel =
                     messages.entrySet().stream().max(Comparator.comparingInt(a -> a.getValue().size())).orElse(null);
             String mostUsedChannelString = ce.getGuild().getGuildChannelById(mostUsedChannel.getKey()).getName() + ": " + mostUsedChannel.getValue().size();
-            eb.addField("Total Messages: ", String.valueOf(totalMessage), false);
+            eb.addField("Total Messages: ", String.valueOf(totalMessage), true);
             eb.addField("Most Used Channel: ", mostUsedChannelString, true);
             ce.getChannel().sendMessage(eb.build()).queue();
         }else{

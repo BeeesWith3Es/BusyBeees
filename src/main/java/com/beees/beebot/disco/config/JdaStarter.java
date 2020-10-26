@@ -1,6 +1,8 @@
 package com.beees.beebot.disco.config;
 
 import com.beees.beebot.disco.commands.BuzzCommand;
+import com.beees.beebot.disco.commands.ColorCommand;
+import com.beees.beebot.disco.commands.PollCommand;
 import com.beees.beebot.disco.commands.ProfileCommand;
 import com.beees.beebot.disco.services.MessageService;
 import com.beees.beebot.persistence.management.BotInfoManager;
@@ -45,10 +47,13 @@ public class JdaStarter {
         //TODO this is a dumb convention: every command needs to store itself.
         //The alternative is dependency injection (these are components), but there's going to be a lot of them.
         commandBuilder.addCommand(ProfileCommand.getCommand());
+        commandBuilder.addCommand(ColorCommand.getCommand());
+        commandBuilder.addCommand(PollCommand.getCommand());
 
         CommandClient commandClient = commandBuilder.build();
 
         jdaBuilder.addEventListeners(commandClient);
+        jdaBuilder.addEventListeners(buzzCommand);
 
         try{
             //Try to log in bot

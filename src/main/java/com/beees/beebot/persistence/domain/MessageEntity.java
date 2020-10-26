@@ -3,17 +3,17 @@ package com.beees.beebot.persistence.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 @Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@EntityListeners(value = {AuditingEntityListener.class})
 @Table(name = "message", schema = "hive")
 public class MessageEntity {
 
@@ -33,4 +33,9 @@ public class MessageEntity {
 
     private ZonedDateTime timestamp;
 
+    private Boolean isBot;
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private ZonedDateTime createdAt;
 }
