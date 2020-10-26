@@ -23,16 +23,21 @@ public class MessageEntity {
     @Column(name = "id")
     private String id;
 
+    @Column(name = "channel_id")
     private String channelId;
 
+    @Column(name = "guild_id")
     private String guildId;
 
+    @Column(name = "member_id")
     private String memberId;
 
+    @Column(name = "has_embed")
     private Boolean hasEmbed;
 
     private ZonedDateTime timestamp;
 
+    @Column(name = "is_bot")
     private Boolean isBot;
 
     @CreatedDate

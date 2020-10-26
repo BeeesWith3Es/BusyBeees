@@ -1,6 +1,7 @@
 package com.beees.beebot.disco.commands;
 
 import com.beees.beebot.disco.config.BotProps;
+import com.beees.beebot.disco.services.MessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -18,8 +19,10 @@ import java.util.concurrent.TimeUnit;
 public class BuzzCommand extends ListenerAdapter {
 
     private final BotProps botProps;
+    private final MessageService messageService;
 
     public void onMessageReceived(MessageReceivedEvent e){
+        messageService.persistMessage(e.getMessage());
         String message = e.getMessage().getContentRaw();
         if(botProps.getCommandString().trim().equals(message)){
             e.getMessage().addReaction("U+1F41D").queue();

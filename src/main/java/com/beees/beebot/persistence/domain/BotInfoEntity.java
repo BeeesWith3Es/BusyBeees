@@ -18,7 +18,9 @@ public class BotInfoEntity {
 
     private String username;
 
+    @Column(name = "client_id")
     private String clientId;
 
+    @Column(name = "guild_id")
     private String guildId;
 }
