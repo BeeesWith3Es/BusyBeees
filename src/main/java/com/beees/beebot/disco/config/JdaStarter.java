@@ -1,9 +1,10 @@
 package com.beees.beebot.disco.config;
 
-import com.beees.beebot.disco.commands.BuzzCommand;
-import com.beees.beebot.disco.commands.ColorCommand;
-import com.beees.beebot.disco.commands.PollCommand;
-import com.beees.beebot.disco.commands.ProfileCommand;
+import com.beees.beebot.disco.listener.BuzzListener;
+import com.beees.beebot.disco.command.ColorCommand;
+import com.beees.beebot.disco.command.PollCommand;
+import com.beees.beebot.disco.command.ProfileCommand;
+import com.beees.beebot.disco.listener.PollListener;
 import com.beees.beebot.disco.services.MessageService;
 import com.beees.beebot.persistence.management.BotInfoManager;
 import com.beees.beebot.persistence.domain.BotInfoEntity;
@@ -24,7 +25,8 @@ public class JdaStarter {
     private static JDA jda;
 
     private final BotInfoManager botInfoManager;
-    private final BuzzCommand buzzCommand;
+    private final BuzzListener buzzListener;
+    private final PollListener pollListener;
     private final BotProps botProps;
     private final MessageService messageService;
 
@@ -53,7 +55,8 @@ public class JdaStarter {
         CommandClient commandClient = commandBuilder.build();
 
         jdaBuilder.addEventListeners(commandClient);
-        jdaBuilder.addEventListeners(buzzCommand);
+        jdaBuilder.addEventListeners(buzzListener);
+        jdaBuilder.addEventListeners(pollListener);
 
         try{
             //Try to log in bot

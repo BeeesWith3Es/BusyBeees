@@ -18,6 +18,9 @@ public class PollE {
     @Column(name = "pollster_member_id")
     private String pollsterMemberId;
 
+    @Column(name = "poll_question")
+    private String pollQuestion;
+
     @Column(name = "end_time")
     private ZonedDateTime endTime;
 
@@ -29,6 +32,12 @@ public class PollE {
     @Column(name = "created_at")
     private ZonedDateTime createdAt;
 
-    @OneToMany(mappedBy = "poll", cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE })
+    @Column(name = "guild_id")
+    private String guildId;
+
+    @Column(name = "channel_id")
+    private String channelId;
+
+    @OneToMany(mappedBy = "poll", fetch = FetchType.EAGER, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE })
     private List<PollOptionE> options;
 }

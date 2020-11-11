@@ -1,4 +1,4 @@
-package com.beees.beebot.disco.commands;
+package com.beees.beebot.disco.command;
 
 import com.beees.beebot.disco.config.BotProps;
 import com.beees.beebot.disco.services.MessageService;
@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.restaction.RoleAction;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +39,7 @@ public class ColorCommand extends Command{
 
         List<String> args = messageService.parseArgs(e.getArgs());
         Map<String, Integer> allowedRoles = new HashMap<>();
-        for(String s : botProps.getPermissions().getCanManage()){
+        for(String s : botProps.getPermissions().getManageLightRoles()){
             allowedRoles.put(s, 0);
         }
         for(Role r : Objects.requireNonNull(e.getMember()).getRoles()){

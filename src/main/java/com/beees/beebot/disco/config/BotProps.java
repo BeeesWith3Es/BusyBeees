@@ -14,11 +14,13 @@ public class BotProps {
     private String commandString;
     private String bigBanRole;
     private Permissions permissions;
+    private String pollResultsChannel;
 
     @Data
     public static class Permissions{
-        public List<String> canManage;
-        private List<String> canBan;
+        private List<String> manageLightRoles;
+        private List<String> manageHeavyRoles;
+        private List<String> managePolls;
     }
 
 }

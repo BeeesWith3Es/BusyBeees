@@ -1,4 +1,4 @@
-package com.beees.beebot.disco.commands;
+package com.beees.beebot.disco.listener;
 
 import com.beees.beebot.disco.config.BotProps;
 import com.beees.beebot.disco.services.MessageService;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class BuzzCommand extends ListenerAdapter {
+public class BuzzListener extends ListenerAdapter {
 
     private final BotProps botProps;
     private final MessageService messageService;
@@ -30,19 +30,19 @@ public class BuzzCommand extends ListenerAdapter {
     }
 
     public void onMessageReactionAdd(@Nonnull MessageReactionAddEvent event) {
-        if(event.getUser().isBot()){
-            return;
-        }
-        event.retrieveMessage().queue((message -> {
-            if(event.getJDA().getSelfUser().getId().equals(message.getAuthor().getId())){
-                if(event.getReactionEmote().getName().equals("🐝")){
-                    message.addReaction("U+1F36F").queue(reaction->{
-                        message.removeReaction("U+1F36F").queueAfter(2, TimeUnit.SECONDS);
-                        message.removeReaction("🐝", event.getMember().getUser()).queue();
-                    });
-                }
-            }
-        }));
+//        if(event.getUser().isBot()){
+//            return;
+//        }
+//        event.retrieveMessage().queue((message -> {
+//            if(event.getJDA().getSelfUser().getId().equals(message.getAuthor().getId())){
+//                if(event.getReactionEmote().getName().equals("🐝")){
+//                    message.addReaction("U+1F36F").queue(reaction->{
+//                        message.removeReaction("U+1F36F").queueAfter(2, TimeUnit.SECONDS);
+//                        message.removeReaction("🐝", event.getMember().getUser()).queue();
+//                    });
+//                }
+//            }
+//        }));
     }
 
     @Scheduled(cron = "0 0/1 * * * ?")

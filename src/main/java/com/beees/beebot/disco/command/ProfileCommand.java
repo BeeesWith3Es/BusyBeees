@@ -1,4 +1,4 @@
-package com.beees.beebot.disco.commands;
+package com.beees.beebot.disco.command;
 
 import com.beees.beebot.disco.config.BotProps;
 import com.beees.beebot.disco.services.MessageService;
@@ -17,7 +17,6 @@ import java.time.format.FormatStyle;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

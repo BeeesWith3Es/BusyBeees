@@ -24,14 +24,20 @@ bot:
   bot-username: "BeeeBot"
   command-string: "o8o "
   big-ban-role: all-ban
+  poll-results-channel: "772996698196410400"
   permissions:
-    can-manage:
+    manage-light-roles:
       - admin
       - moderator
       - channel-mod
       - color-captain
-    can-ban:
+    manage-heavy-roles:
       - admin
       - moderator
       - channel-mod
+    manage-polls:
+      - admin
+      - moderator
+      - channel-mod
+      - poll-captain
 

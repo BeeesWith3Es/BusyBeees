@@ -22,6 +22,10 @@ public class PollManager {
         pollRepo.save(poll);
     }
 
+    public PollE getPoll(String id){
+        return pollRepo.findById(id).orElse(null);
+    }
+
     public List<PollE> getCompletedUnclosedPolls(){
         return pollRepo.findAllByEndTimeBeforeAndClosedFalse(ZonedDateTime.now());
     }

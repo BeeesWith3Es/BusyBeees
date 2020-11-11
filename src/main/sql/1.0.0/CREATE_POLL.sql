@@ -7,5 +7,7 @@ create table polling.poll
     end_time timestamp with time zone not null,
     vote_limit integer,
     closed boolean default false not null,
-    created_at timestamp with time zone not null
+    created_at timestamp with time zone not null,
+    channel_id text not null,
+    guild_id text not null
 );

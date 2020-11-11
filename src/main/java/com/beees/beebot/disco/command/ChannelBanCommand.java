@@ -1,4 +1,4 @@
-package com.beees.beebot.disco.commands;
+package com.beees.beebot.disco.command;
 
 import com.beees.beebot.disco.services.MessageService;
 import com.jagrosh.jdautilities.command.Command;
