@@ -37,7 +37,7 @@ public class ProfileCommand extends Command {
 
     @Override
     protected void execute(CommandEvent ce) {
-        //TODO make this work. Rn I'm just testing the JDA-Utilities stuff
+        //TODO This throws an error when using @mentions
         List<String> args = messageService.parseArgs(ce.getArgs());
 
         if(args.size()<1){
